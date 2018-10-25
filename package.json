@@ -21,4 +21,9 @@
     "nodemon": "^1.12.7"
   },
   "description": ""
+
+  "engines": {
+    "node": "8.11.2",
+    "npm": "6.2.0"
+  }
 }
