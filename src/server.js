@@ -12,10 +12,12 @@ const image = require('./controllers/image');
 const db = knex({
     client: 'pg',
     connection: {
-        host: 'postgresql-asymmetrical-69593',
-        user: 'sachinjadhav',
-        password: '',
-        database: 'smart-brain'
+        // host: 'postgresql-asymmetrical-69593',
+        //         // user: 'sachinjadhav',
+        //         // password: '',
+        //         // database: 'smart-brain'
+        host: process.env.DATABASE_URL,
+        ssl:true,
     }
 });
 
@@ -31,7 +33,7 @@ app.get('/profile/:id', (req, res) => { profile.handleProfileGet(req, res, db)})
 app.put('/image', (req, res) => { image.handleImage(req, res, db)})
 app.post('/imageurl', (req, res) => { image.handleApiCall(req, res)})
 
-//const PORT= process.env.PORT;
-app.listen( process.env.PORT || 3000, ()=> {
-  console.log('app is running on port 3002');
+const PORT = process.env.port||'3002';
+app.listen( PORT, ()=> {
+  console.log(`app is running on port ${PORT}`);
 })
